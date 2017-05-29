@@ -1,11 +1,14 @@
 To run the tests
-    python -m unittest discover tests -vv
+
+	python -m unittest discover tests -vv
 
 To run with input file (The exercise input example)
-    python main.py -i test_input.txt
+
+	python main.py -i test_input.txt
 
 To run
-    python main.py
+
+	python main.py
 
 Reading and re-reading the challenges I fell in love with the Galaxy one. It was quite dificult for me to figure out a way to deal with roman numerals. But it worked and I loved it. I hope you like it too.
 
