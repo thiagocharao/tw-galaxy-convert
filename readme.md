@@ -10,6 +10,7 @@ To run
 Reading and re-reading the challenges I fell in love with the Galaxy one. It was quite dificult for me to figure out a way to deal with roman numerals. But it worked and I loved it. I hope you like it too.
 
 So, basically I divided the problem into contexts:
+
     units.py: I needed an abstraction for a way to quantitify Galaxy Unit. There is a TODO here, on to_roman method it
               would be possible to make that work using yield and a generator, although I spend a lot of time there
 	          and that was not even the main goal. So it is a TODO now.
