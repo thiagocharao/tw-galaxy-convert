@@ -42,3 +42,12 @@ class InterpreterTestCase(unittest.TestCase):
     def test_unreadable_stuff(self):
         with self.assertRaises(ReadingException):
             self.interpreter.read('how much you wanna pay me?')
+
+    def test_conversion_question(self):
+        self.interpreter.read('glob is I')
+        self.interpreter.read('prok is V')
+        self.interpreter.read('glob Silver is 4 Credits')
+        self.interpreter.read('glob glob Gold is 15 Credits')
+        answer = self.interpreter.read(
+            'how many Silver is glob prok Gold ?')
+        self.assertEqual(answer, 'glob prok Gold is 7.5 Silver')

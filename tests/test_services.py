@@ -27,3 +27,15 @@ class ResourceManagerTestCase(unittest.TestCase):
         self.manager.set_resource_credits(34900, 'prok', 'Gold')
         credits = self.manager.get_resource_worth_in_credits('glob', 'Gold')
         self.assertEqual(credits, 6980)
+
+    def test_resource_correnspondency_factor(self):
+        self.manager.set_resource_credits(20, 'glob glob', 'Gold')
+        self.manager.set_resource_credits(5, 'glob', 'Silver')
+        factor = self.manager.get_resource_correnspondency_factor('Gold', 'Silver')
+        self.assertEqual(factor, 2)
+
+    def test_resource_worth_in_target_resource(self):
+        self.manager.set_resource_credits(20, 'glob glob', 'Gold')
+        self.manager.set_resource_credits(5, 'glob', 'Silver')
+        worth = self.manager.get_resource_worth_in_target_resource('glob glob glob', 'Gold', 'Silver')
+        self.assertEqual(worth, 6)

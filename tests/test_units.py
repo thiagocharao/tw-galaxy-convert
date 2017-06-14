@@ -38,3 +38,13 @@ class GalaxyUnitTestCase(unittest.TestCase):
         self.assertEqual(self.unit.to_int('glob glob glob'), 3)
         self.assertEqual(self.unit.to_int('glob prok'), 4)
         self.assertEqual(self.unit.to_int('prok glob'), 6)
+
+    def test_tw_extension_test_case(self):
+        self.unit.set_synonym('hnga', 'C')
+        self.unit.set_synonym('mpor', 'D')
+        self.unit.set_synonym('atre', 'M')
+        self.assertEqual(self.unit.to_int('hnga '), 100)
+        self.assertEqual(self.unit.to_int('mpor hnga'), 600)
+        self.assertEqual(self.unit.to_int('hnga mpor'), 400)
+
+

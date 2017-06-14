@@ -55,3 +55,14 @@ class ResourceManager(object):
         resource = self.get_or_create_resource(type)
         resource.credits_per_unit = float(credits) / units
         self.resources[type] = resource
+
+    def get_resource_correnspondency_factor(self, origin_type, target_type):
+        origin = self.resources[origin_type]
+        target = self.resources[target_type]
+        return origin.credits_per_unit / target.credits_per_unit
+
+    def get_resource_worth_in_target_resource(
+            self, galaxy_units, origin_type, target_type):
+        units = self.galaxy_unit.to_int(galaxy_units)
+        factor = self.get_resource_correnspondency_factor(origin_type, target_type)
+        return float(units * factor)

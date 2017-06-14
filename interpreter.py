@@ -7,7 +7,8 @@ SENTENCE_PATTERNS = {
     'synonym_unit_definition': r'(?P<galaxy_unit>[a-z]*) is (?P<corresponds_to>[M, D, C, L, X, V, I])',  # NOQA
     'resource_credit_defnition': r'(?P<galaxy_units>[a-z, ]*) (?P<resource>[A-Z][a-z]*) is (?P<credits>[0-9]*) Credits',  # NOQA
     'unit_question': r'how much is (?P<galaxy_units>[a-z, ]*) ?',
-    'credits_question': r'how many Credits is (?P<galaxy_units>[a-z, ]*) (?P<resource>[A-Z][a-z]*) ?'  # NOQA
+    'credits_question': r'how many Credits is (?P<galaxy_units>[a-z, ]*) (?P<resource>[A-Z][a-z]*) ?',  # NOQA
+    'conversion_question': r'how many (?P<target_resource>[A-Z][a-z]*) is (?P<galaxy_units>[a-z, ]*) (?P<resource>[A-Z][a-z]*) ?' # NOQA
 }
 
 
@@ -68,3 +69,13 @@ class Interpreter(object):
         elif key == 'resource_credit_defnition':
             return self.manager.set_resource_credits(
                 data['credits'], data['galaxy_units'], data['resource'])
+
+        elif key == 'conversion_question':
+            answer = '{galaxy_units} {resource} is {{quantity}} {target_resource}'
+            answer = answer.format(
+                galaxy_units=data['galaxy_units'],
+                target_resource=data['target_resource'],
+                resource=data['resource'])
+            quantity = self.manager.get_resource_worth_in_target_resource(
+                data['galaxy_units'], data['resource'], data['target_resource'])
+            return answer.format(quantity=quantity)
