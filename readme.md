@@ -18,7 +18,7 @@ So, basically I divided the problem into contexts:
               would be possible to make that work using yield and a generator, although I spend a lot of time there
 	          and that was not even the main goal. So it is a TODO now.
 
-    resources.py: Also needed to find a way to keep track of resources of the system, here I wnated to create an
+    resources.py: Also needed to find a way to keep track of resources of the system, here I wanted to create an
                   agnostic way to create new resources, it would be possible using a list of dicts. But I tended
 		          to use a Factory because it would be nicer to have Strong instances of each resource. (at least that's my opinion)
 
